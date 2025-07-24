@@ -32,12 +32,17 @@ This project provides a Bash script to **synchronize hosts between a CMDB (Maria
 
 Templates are assigned automatically based on the interface_type and os:
 
-Interface	OS Pattern	Template ID (Example)	Description
-agent	Windows	10081	Windows by Zabbix agent
-agent	Linux, Ubuntu, etc.	10001	Linux by Zabbix agent
-snmp	Cisco	10218	Cisco SNMP Template
-snmp	Others	10253	Generic SNMP Template
+Interface	| OS Pattern	        | Template ID (Example)	| Description.            |
+----------------------------------------------------------------------------------|
+agent	    | Windows	            | 10081	                | Windows by Zabbix agent.|
+agent	    | Linux, Ubuntu, etc.	| 10001	                | Linux by Zabbix agent.  |
+snmp	    | Cisco	              | 10218	                | Cisco SNMP Template.    |
+snmp	    | Others	            | 10253	                | Generic SNMP Template.  |
+----------------------------------------------------------------------------------|
 You can adjust template IDs as per your Zabbix setup.
+
+🔐 .gitignore
+
 ## 💽 CMDB Table Requirements
 
 The script queries the following fields from a `cmdb_ci` table:

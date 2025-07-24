@@ -1,6 +1,3 @@
-# zabbix-cmdb-sync
-Sync Zabbix hosts with CMDB (MySQL/MariaDB) using Bash and Zabbix API
-
 # Zabbix CMDB Sync Script
 
 This project provides a Bash script to **synchronize hosts between a CMDB (MariaDB)** and **Zabbix** using the Zabbix API.

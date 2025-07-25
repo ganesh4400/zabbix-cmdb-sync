@@ -1,7 +1,4 @@
 #!/bin/bash
-
-
-
 ZABBIX_URL=""
 ZABBIX_TOKEN=""
 
@@ -10,13 +7,12 @@ DB_USER="root"
 DB_PASS=""
 DB_HOST=""
 
-
 TMP_PROCESSED="/tmp/processed_hosts.txt"
 > "$TMP_PROCESSED"
 declare -a processed_hosts
 
 # Fetch all CMDB entries
-query="SELECT sys_id, name, visible_name, ip_address, host_group, interface_type, proxy, env, its, os, os_version, serial_number, classification, u_criticality, location, environment, manufacturer, model_id, ip_address_2, sys_class_name, department, company, vendor, sys_updated_on FROM cmdb_ci;"
+query="SELECT sys_id, name, visible_name, ip_address, host_group, interface_type, proxy, env, dept, os, os_version, serial_number, classification, u_criticality, location, environment, manufacturer, model_id, ip_address_2, sys_class_name, department, company, vendor, sys_updated_on FROM cmdb_ci;"
 echo -e "\n📦 Fetching CMDB entries..."
 
 # API helper function
@@ -25,7 +21,7 @@ zabbix_api() {
 }
 
 # Main processing loop
-while IFS=$'\t' read -r sys_id name visible_name ip_address host_group interface_type proxy env its os os_version serial_number classification u_criticality location environment manufacturer model_id ip_address_2 sys_class_name department company vendor sys_updated_on; do
+while IFS=$'\t' read -r sys_id name visible_name ip_address host_group interface_type proxy env dept os os_version serial_number classification u_criticality location environment manufacturer model_id ip_address_2 sys_class_name department company vendor sys_updated_on; do
 
   echo -e "➞️  Processing $name | IP: $ip_address | Group: $host_group"
 
@@ -71,7 +67,7 @@ while IFS=$'\t' read -r sys_id name visible_name ip_address host_group interface
   }
 
   add_macro ENV "$env"
-  add_macro ITS "$its"
+  add_macro Dept "$dept"
   add_macro CLASS "$classification"
   add_macro CRITICALITY "$u_criticality"
   add_macro SERIAL "$serial_number"
